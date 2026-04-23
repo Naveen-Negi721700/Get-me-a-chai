@@ -24,7 +24,8 @@ export default function Home() {
 
       <div className="text-white">
         <div className="text-2xl font-bold text-center my-5">Your Fans Can Buy You a Chai</div>
-        <div className="flex gap-5 justify-around">
+        <div className="flex gap-5 justify-around"> 
+          
           <div className="item space-y-3 ">
             <img className="bg-slate-400 rounded-full p-2" src="./man.gif" width={88} alt="" />
             <p className="font-bold">Fund Your Self</p>

@@ -23,7 +23,7 @@ export default function Home() {
 
       {/* it is a second box */}
       <div className="text-white pb-32 pt-14">
-        <h1 className="text-3xl font-bold text-center mb-14">Your Fans Can Buy You a Chai</h1>
+        <h2 className="text-3xl font-bold text-center mb-14">Your Fans Can Buy You a Chai</h2>
         <div className="flex gap-5 justify-around">
 
           <div className="item space-y-3 flex flex-col justify-center items-center">
@@ -56,7 +56,7 @@ export default function Home() {
 
       {/* it is a third box */}
       <div className="text-white pb-32 pt-14 flex flex-col justify-center items-center">
-        <h1 className="text-3xl font-bold text-center mb-14">Learn more about us</h1>
+        <h2 className="text-3xl font-bold text-center mb-14">Learn more about us</h2>
 
     <iframe
   width="560"

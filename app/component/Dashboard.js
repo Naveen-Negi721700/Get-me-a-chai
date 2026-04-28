@@ -1,4 +1,5 @@
-"use client"
+        
+        "use clint"
 import React from 'react'
 
 const Dashboard = () => {
@@ -23,7 +24,9 @@ const Dashboard = () => {
         <input type="text" className="w-full p-3 rounded-lg bg-slate-800" placeholder="Razorpay Credentials" />
         <button type="button" className="text-white bg-gradient-to-br mt-4 from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-base text-sm px-4 py-2.5 text-center leading-5 border rounded-lg">Save</button>
       </div>
-      </div>
+      </div>   
+
+
     </>
   )
 }

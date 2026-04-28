@@ -86,7 +86,8 @@ const Username = () => {
               <button className="bg-slate-800 p-3 rounded-lg"> $5 </button>
               <button className="bg-slate-800 p-3 rounded-lg"> $10 </button>
               <button className="bg-slate-800 p-3 rounded-lg"> $20 </button>
-              <button className="bg-slate-800 p-3 rounded-lg"> $50 </button>
+              <button className="bg-slate-800 p-3 rounded-lg"> $50 </button>     
+  
             </div>
           </div>
         </div>

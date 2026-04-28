@@ -13,7 +13,8 @@ const Login = () => {
     }
   }, [status, router])
 
-  if (status === "loading") {
+  if (status === "loading") {  
+    
     return <div>Loading...</div>
   }
     return (

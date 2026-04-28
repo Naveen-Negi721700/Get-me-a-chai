@@ -5,7 +5,7 @@ export default function Home() {
     <>
       {/* it ia a box first  */}
       <div className="flex justify-center items-center flex-col gap-4 h-[44vh] text-white">
-        <div className="font-bold text-5xl flex gap-2 justify-center items-center ">Buy Me a Chai <span><img src="./tea.gif" width={88} alt="" /></span></div>
+        <div className="font-bold text-5xl flex gap-2 justify-center items-center ">Buy Me a Chai <span><img className="invertImg" src="./tea.gif" width={88} alt="" /></span></div>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam temporibus
         </p>

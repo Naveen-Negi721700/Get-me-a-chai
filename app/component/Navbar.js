@@ -5,7 +5,6 @@ import Link from 'next/link'
 import { useSession, signIn, signOut } from "next-auth/react"
 
 
-
 const Navbar = () => {
     const [showdropdown, setshowdropdown] = useState(false)
     const { data: session } = useSession()

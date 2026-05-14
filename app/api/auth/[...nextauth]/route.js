@@ -37,8 +37,8 @@
 
 import NextAuth from "next-auth";
 import GitHubProvider from "next-auth/providers/github";
-import mongoose from "mongoose";
 import User from "@/app/models/User";
+import connectDB from "@/app/db/connectDb";
 
 const handler = NextAuth({
   providers: [
@@ -49,35 +49,53 @@ const handler = NextAuth({
   ],
 
   callbacks: {
-    async signIn({ user, account }) {
-      if (account.provider == "github") {
-
-        await mongoose.connect("mongodb://localhost:27017/chai");
+  async signIn({ user, account }) {
+    try {
+      if (account?.provider === "github") {
+        await connectDB();
 
         const currentUser = await User.findOne({
           email: user.email,
         });
 
         if (!currentUser) {
-
-          const newUser = new User({
+          const newUser = await User.create({
             email: user.email,
             Username: user.email.split("@")[0],
           });
 
-          await newUser.save();
-
           user.name = newUser.Username;
-
         } else {
-
           user.name = currentUser.Username;
         }
-
-        return true;
       }
-    },
+
+      return true;
+    } catch (error) {
+      console.log("SIGNIN ERROR:", error);
+      return false;
+    }
   },
+
+  async session({ session }) {
+    try {
+      await connectDB();
+
+      const dbUser = await User.findOne({
+        email: session.user.email,
+      });
+
+      if (dbUser) {
+        session.user.name = dbUser.Username;
+      }
+
+      return session;
+    } catch (error) {
+      console.log("SESSION ERROR:", error);
+      return session;
+    }
+  },
+},
 });
 
 export { handler as GET, handler as POST };

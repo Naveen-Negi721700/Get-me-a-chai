@@ -20,7 +20,7 @@ const Paymentpage = ({ username }) => {
     let a = await initiate(amount, username, paymentform)
     let orderid = a.id
     var options = {
-      "key": process.env.KEY_ID, // Enter the Key ID generated from the Dashboard
+      "key": process.env.NEXT_PUBLIC_KEY_ID, // Enter the Key ID generated from the Dashboard
       "amount": amount, // Amount is in currency subunits.
       "currency": "INR",
       "name": "Get Me A Chai", //your business name
@@ -33,7 +33,7 @@ const Paymentpage = ({ username }) => {
       //     alert(response.razorpay_signature)
       // },
 
-      "callback_url": `${process.env.URL}/api/razorpay`,
+      "callback_url": `${process.env.NEXT_PUBLIC_URL}/api/razorpay`,
       "prefill": { //We recommend using the prefill parameter to auto-fill customer's contact information, especially their phone number
         "name": "Gaurav Kumar", //your customer's name
         "email": "gaurav.kumar@example.com",

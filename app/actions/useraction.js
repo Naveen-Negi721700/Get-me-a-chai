@@ -28,3 +28,27 @@ export const initiate = async (amount, to_username, paymentform) => {
 
 
 }
+
+export const fetchuser = async (username) => {
+    await connectDB()
+
+    let u = await User.findOne({ username })
+
+    if (!u) {
+        return null
+    }
+
+    let user = u.toObject({ flattenObjectIds: true })
+
+    return user
+}
+
+export const fetchpayments = async (username) => {
+    await connectDB()
+
+    let p = await Payment.find({ to_user: username })
+        .sort({ amount: -1 })
+        .lean()
+
+    return JSON.parse(JSON.stringify(p))
+}

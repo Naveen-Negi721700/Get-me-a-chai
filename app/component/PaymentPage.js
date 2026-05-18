@@ -5,16 +5,33 @@ import { useParams } from "next/navigation"
 import { useState } from 'react'
 import { initiate } from '@/app/actions/useraction'
 import { useSession } from 'next-auth/react'
+import { fetchuser, fetchpayments } from '@/app/actions/useraction'
+import { useEffect } from 'react' 
+
 const Paymentpage = ({ username }) => {
   const [paymentform, setpaymentform] = useState({
   name: "",
   message: "",
   amount: ""
 })
+const [currentUser, setcurrentUser] = useState({})
+const [payments, setpayments] = useState([])
+
+useEffect(() => {
+  getData()
+}, [])
+
   const handleChange = (e) => {
     setpaymentform({ ...paymentform, [e.target.name]: e.target.value })
   }
 
+  const getData=async()=>{
+    let u= await fetchuser(username)
+    setcurrentUser(u)
+    let dbpayments=await fetchpayments(username)
+    setpayments(dbpayments)
+    
+  }
 
   const pay = async (amount) => {
     let a = await initiate(amount, username, paymentform)
@@ -80,44 +97,16 @@ const Paymentpage = ({ username }) => {
             {/* show list of supporters as a leaderboard */}
             <h2 className="text-2xl font-bold my-5 ">Supporters</h2>
             <ul className="mx-5 text-lg ">
-              <li className="my-2 flex gap-2 items-center ">
-                <img className="w-7 " src="./avatar.gif" alt="" />
-                <span>
-                  Shubham donated <span className="font-bold ">$40</span>. With a message "I support you bro. Lots of love from India ❤️"
-
-                </span>
-              </li>
-              <li className="my-2 flex gap-2 items-center ">
-                <img className="w-7 " src="./avatar.gif" alt="" />
-                <span>
-                  Shubham donated <span className="font-bold ">$40</span>. With a message "I support you bro. Lots of love from India ❤️"
-
-                </span>
-              </li>
-              <li className="my-2 flex gap-2 items-center ">
-                <img className="w-7 " src="./avatar.gif" alt="" />
-                <span>
-                  Shubham donated <span className="font-bold ">$40</span>. With a message "I support you bro. Lots of love from India ❤️"
-
-                </span>
-              </li>
-              <li className="my-2 flex gap-2 items-center ">
-                <img className="w-7 " src="./avatar.gif" alt="" />
-                <span>
-                  Shubham donated <span className="font-bold ">$40</span>. With a message "I support you bro. Lots of love from India ❤️"
-
-                </span>
-              </li>
-              <li className="my-2 flex gap-2 items-center ">
-                <img className="w-7 " src="./avatar.gif" alt="" />
-                <span>
-                  Shubham donated <span className="font-bold ">$40</span>. With a message "I support you bro. Lots of love from India ❤️"
-
-                </span>
-              </li>
-
-
-
+              {payments.map((p,i) => {
+                return (<li key={i} className="my-2 flex gap-2 items-center ">
+                  <img className="w-7 " src="./avatar.gif" alt="" />
+                  <span>
+                    {p.name} donated <span className="font-bold ">₹{p.amount}</span>. With a message "{p.message}"
+                  </span>
+                </li>)
+              })}
+              
+              
 
             </ul>
 
@@ -135,7 +124,7 @@ const Paymentpage = ({ username }) => {
 
 
               <input onChange={handleChange} value={paymentform.amount} name='amount' type="text" className="w-full p-3 rounded-lg bg-slate-800" placeholder="Enter Amount" />
-              <button type="button" className="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-base text-sm px-4 py-2.5 text-center leading-5">Pay</button>
+              <button onClick={() => pay(Number.parseInt(paymentform.amount) * 100)} type="button" className="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-base text-sm px-4 py-2.5 text-center leading-5" >Pay</button>
             </div>
             {/* or chose from this amount */}
             <div className="flex gap-2 mt-5">

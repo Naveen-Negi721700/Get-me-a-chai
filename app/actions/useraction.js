@@ -3,6 +3,7 @@ import Razorpay from "razorpay"
 import Payment from "@/app/models/Payment"
 import connectDB from "@/app/db/connectDb"
 import User from "@/app/models/User"
+import { use } from "react"
 
 export const initiate = async (amount, to_username, paymentform) => {
     await connectDB()
@@ -51,4 +52,27 @@ export const fetchpayments = async (username) => {
         .lean()
 
     return JSON.parse(JSON.stringify(p))
+}
+
+export const updateprofile = async (data, oldusername) => {
+
+    await connectDB()
+
+    let ndata = data
+
+    if (oldusername !== ndata.username) {
+
+        let u = await User.findOne({ username: ndata.username })
+
+        if (u) {
+            return { error: "Username already exists" }
+        }
+    }
+
+    await User.updateOne(
+        { email: ndata.email },
+        ndata
+    )
+
+    return { success: true }
 }

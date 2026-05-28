@@ -7,7 +7,7 @@ const Footer = () => {
     </div>
     
  // foote it is
-  )
+  )  
 }
   
 export default Footer

@@ -159,6 +159,42 @@ export default function Navbar() {
               </Link>
             </li>
 
+            <li>
+              <Link href="/about" onClick={() => setIsOpen(false)}>
+                About
+              </Link>
+            </li>
+
+            <li>
+              <Link href="/services" onClick={() => setIsOpen(false)}>
+                Services
+              </Link>
+            </li>
+
+            <li>
+              <Link href="/contact" onClick={() => setIsOpen(false)}>
+                Contact
+              </Link>
+            </li>
+
+            <li>
+              <Link href="/about" onClick={() => setIsOpen(false)}>
+                About
+              </Link>
+            </li>
+
+            <li>
+              <Link href="/services" onClick={() => setIsOpen(false)}>
+                Services
+              </Link>
+            </li>
+
+            <li>
+              <Link href="/contact" onClick={() => setIsOpen(false)}>
+                Contact
+              </Link>
+            </li>
+
             <button className="bg-blue-500 px-5 py-2 rounded-xl hover:bg-blue-600 transition w-fit">
               Login
             </button>

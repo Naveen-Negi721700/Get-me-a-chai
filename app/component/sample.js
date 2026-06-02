@@ -209,12 +209,16 @@ export default function Navbar() {
               </Link>
             </li>
 
-
+<li>
+              <Link href="/contact" onClick={() => setIsOpen(false)}>
+                Contact
+              </Link>    
+            </li> 
 
              <li>
               <Link href="/contact" onClick={() => setIsOpen(false)}>
                 Contact
-              </Link>
+              </Link>    
             </li> 
             <button className="bg-blue-500 px-5 py-2 rounded-xl hover:bg-blue-600 transition w-fit">
               Login

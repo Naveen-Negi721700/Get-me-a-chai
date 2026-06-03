@@ -16,7 +16,7 @@ const Dashboard = () => {
   const { data: session, status, update } = useSession()
   
 useEffect(() => {
-
+   
   if (status === "unauthenticated") {
     router.push("/login")
     return

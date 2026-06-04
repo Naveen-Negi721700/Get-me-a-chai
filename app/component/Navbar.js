@@ -45,7 +45,7 @@ const Navbar = () => {
                             <li>
                                 <Link href="/dashboard" className="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded">Dashboard</Link>
                             </li>
-                            
+                             
                             <li>  
                                 <Link href={`/${session.user.name}`} className="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded">Your Page</Link>
                             </li>
